@@ -141,9 +141,9 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <label for="inputCovera">Capa(*)</label>
-                                    <img id="inputCovera" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                                    <img id="inputCovers" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
                                         alt="">
-                                    <input type="file" name="picField" id="picField">
+                                    <input type="file" name="picField" id="imgInp" onchange="img()">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -284,6 +284,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script-->
     <script src="js/fakeDB.js"></script>
     <script>
+        var imgo64 = null;
         function exibeBandas() {
             // Remove todas as linhas do corpo da tabela
             $("#table-bandas").html("");
@@ -319,7 +320,6 @@
         }
 
 
-        var gridalterar = false;
         function visualizarClick(id) {
             let banda = fakedb.data[fakedb.data.map(obj => obj.id).indexOf(parseInt(id))];
             gridalterar = true;
@@ -366,7 +366,6 @@
 
         $("#btnUpdate").click(function () {
             // Obtem os valores dos campos do formulário
-            carregaImg();
             let campoId = $("#inputIda").val();
             if (campoId == "") {
                 displayMessage("Selecione a banda q deseja alterar.");
@@ -375,7 +374,7 @@
             let campoNome = $("#inputNomea").val();
             let campoFormation = $("#inputFormationa").val();
             let campoGenre = $('#inputGenrea').val();
-            let campoCover = img64;
+            let campoCover = imgo64;
             let campoMembers = $('#inputMembersa').val();
             let campoAlbums = $('#inputAlbuma').val();
             let banda = { nome: campoNome, formation: campoFormation, genre: campoGenre, cover: campoCover, members: campoMembers, albums: campoAlbums };
@@ -389,11 +388,6 @@
 
             // Fecha o modal para visualização da mensagem
             //closeModal();
-        });
-
-        $("#picField").change(function () {
-            imagemA = true;
-            carregaImgA(this);
         });
 
         $("#btnDelete").click(function () {
@@ -445,9 +439,9 @@
         var imagemA = false;
         function carregaImg() {
             let files = document.getElementById('picField').files;
-            
+
             console.log("Teste");
-            if (FileReader && files && files.length) {
+            if (FileReader && files && !files.length) {
                 var fr = new FileReader();
                 fr.onload = function () {
                     let imgElement = document.getElementById('inputCover');
@@ -456,25 +450,28 @@
                     console.log(fr.result);
                     $("#inputCover").attr('src', fr.result);
                     // document.getElementById('imgPage').innerHTML = fr.result;
-                    /* let imgElementA = document.getElementById('inputCovera');
-                     imgElementA.src = fr.result;
-                     imgElementA.style.width = '200px';
-                     $("#inputCovera").attr('src', fr.result);
-                     */
+
+                    let imgElementA = document.getElementById('inputCovera');
+                    imgElementA.src = fr.result;
+                    imgElementA.style.width = '200px';
+                    $("#inputCovers").attr('src', fr.result);
+                    console.log("sad");
+
                     img64 = fr.result;
 
                 }
-                fr.readAsDataURL(files[0]);
+                //fr.readAsDataURL(files[0]);
             }
         }
-        function carreImgA(input) {
-            
+        function img() {
+            imagemA = true;
+            let input = document.getElementById('imgInp');
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    imgb64 = e.target.result;
-                    $('#inputCovera').attr('src', e.target.result);
+                    imgo64 = e.target.result;
+                    console.log(imgo64);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
