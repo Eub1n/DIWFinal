@@ -80,7 +80,7 @@
                                     <label for="inputCover">Capa(*)</label>
                                     <img id="inputCover" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
                                         alt="">
-                                    <input type="file" name="picField" id="picField" onchange="carregaImg ()">
+                                    <input type="file" name="picField" id="picField" onchange="carregaImg()">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -105,7 +105,7 @@
         <!------------------------------------------------------Modal alterar    ---------------------------------------------------->
 
         <div class="modal-container">
-            <button id="btnAltera" onclick="document.getElementById('alterarmodal').style.display='block'" class="w3-button w3-black">Alterar</button>
+            <!-- <button id="btnAltera" onclick="document.getElementById('alterarmodal').style.display='block'" class="w3-button w3-black">Alterar</button>-->
 
             <div id="alterarmodal" class="w3-modal">
                 <div class="modal-content">
@@ -141,9 +141,9 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <label for="inputCovera">Capa(*)</label>
-                                    <img id="inputCover" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                                    <img id="inputCovera" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
                                         alt="">
-                                    <input type="file" name="picField" id="picField" onchange="carregaImg ()">
+                                    <input type="file" name="picField" id="picField">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -154,7 +154,7 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <input type="button" class="btn btn-success" id="btnInsert" value="Alterar">
+                                    <input type="button" class="btn btn-success" id="btnUpdate" value="Alterar">
                                     <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar Form">
                                 </div>
                             </div>
@@ -164,6 +164,74 @@
         </div>
 
         <!------------------------------------------------------Fim  Modal alterar    ----------------------------------------------->
+
+
+        <!------------------------------------------------------Modal Visualizar    ---------------------------------------------------->
+
+        <div class="modal-container">
+            <!-- <button id="btnAltera" onclick="document.getElementById('alterarmodal').style.display='block'" class="w3-button w3-black">Alterar</button>-->
+
+            <div id="visualizarmodal" class="w3-modal">
+                <div class="modal-content">
+                    <div class="modal-container">
+                        <span onclick="document.getElementById('visualizarmodal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <form id="form-banda">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="inputIdV">Id</label>
+                                    <input type="text" class="form-control" id="inputIda" placeholder="ID" disabled>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label for="inputNomeV">Nome(*)</label>
+                                    <input type="text" class="form-control" id="inputNomeV" required placeholder="Informe o nome da Banda"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <label for="inputFormationV">Formation(*)</label>
+                                    <input type="number" class="form-control" id="inputFormationV" required placeholder="Ano de formação"
+                                        disabled>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputGenreV">Genre(*)</label>
+                                    <input type="text" class="form-control" id="inputGenreV" required placeholder="Gênero"
+                                        disabled>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputMembersV">Members(*)</label>
+                                    <input type="text" class="form-control" id="inputMembersV" required placeholder="Membros"
+                                        disabled>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputAlbumV">Albums(*)</label>
+                                    <input type="text" class="form-control" id="inputAlbumV" required placeholder="Albuns"
+                                        disabled>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="inputCoverV">Capa(*)</label>
+                                    <img id="inputCoverV" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                                        alt="" disabled>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------------------Fim  Modal visaulizar    ----------------------------------------------->
 
 
 
@@ -224,20 +292,20 @@
             for (i = 0; i < fakedb.data.length; i++) {
                 let banda = fakedb.data[i];
 
-                $("#table-bandas").append(`<tr><td scope="row">${banda.id}</td><td>${banda.nome}</td><td>${banda.formation}</td><td>${banda.genre}</td><td><img src="${banda.cover}"></td><td><a id="btnVisualiza" href="#" onclick="openModal2(${banda.id})">Visualizar</a> | <a id="btnAltera" href="#" onclick="alterarClick(${banda.id})">Alterar</a> | <a id="btnExclusao" onclick="botaodel1(${banda.id})" value="Excluir" href="#">Excluir</a></td></tr>`);
+                $("#table-bandas").append(`<tr><td scope="row">${banda.id}</td><td>${banda.nome}</td><td>${banda.formation}</td><td>${banda.genre}</td><td><img src="${banda.cover}"></td><td><a id="btnVisualiza" href="#" onclick="visualizarClick(${banda.id})">Visualizar</a> | <a id="btnAltera" href="#" onclick="alterarClick(${banda.id})">Alterar</a> | <a id="btnExclusao" onclick="botaodel1(${banda.id})" value="Excluir" href="#">Excluir</a></td></tr>`);
             }
         }
-        
-        function botaodel1(id){
+
+        function botaodel1(id) {
             deleteBand(parseInt(id));
             exibeBandas();
         }
 
-        var gridalterar = false ;
-        function alterarClick(id){
+        var gridalterar = false;
+        function alterarClick(id) {
             let banda = fakedb.data[fakedb.data.map(obj => obj.id).indexOf(parseInt(id))];
             gridalterar = true;
-            
+
             //alterar
             $("#inputIda").val(banda.id);
             $("#inputNomea").val(banda.nome);
@@ -247,7 +315,25 @@
             $("#inputMembersa").val(banda.members);
             $("#inputAlbuma").val(banda.albums);
 
-            document.getElementById('alterarmodal').style.display='block';
+            document.getElementById('alterarmodal').style.display = 'block';
+        }
+
+
+        var gridalterar = false;
+        function visualizarClick(id) {
+            let banda = fakedb.data[fakedb.data.map(obj => obj.id).indexOf(parseInt(id))];
+            gridalterar = true;
+
+            //alterar
+            $("#inputIdV").val(banda.id);
+            $("#inputNomeV").val(banda.nome);
+            $("#inputFormationV").val(parseInt(banda.formation));
+            $("#inputGenreV").val(banda.genre);
+            $("#inputCoverV").val(banda.cover);
+            $("#inputMembersV").val(banda.members);
+            $("#inputAlbumV").val(banda.albums);
+
+            document.getElementById('visualizarmodal').style.display = 'block';
         }
 
         function init() {
@@ -278,19 +364,20 @@
             });
         }
 
-        $("#btnAltera").click(function () {
+        $("#btnUpdate").click(function () {
             // Obtem os valores dos campos do formulário
-            let campoId = $("#inputId").val();
+            carregaImg();
+            let campoId = $("#inputIda").val();
             if (campoId == "") {
                 displayMessage("Selecione a banda q deseja alterar.");
                 return;
             }
-            let campoNome = $("#inputNome").val();
-            let campoFormation = $("#inputFormation").val();
-            let campoGenre = $('#inputGenre').val();
+            let campoNome = $("#inputNomea").val();
+            let campoFormation = $("#inputFormationa").val();
+            let campoGenre = $('#inputGenrea').val();
             let campoCover = img64;
-            let campoMembers = $('#inputMembers').val();
-            let campoAlbums = $('#inputAlbum').val();
+            let campoMembers = $('#inputMembersa').val();
+            let campoAlbums = $('#inputAlbuma').val();
             let banda = { nome: campoNome, formation: campoFormation, genre: campoGenre, cover: campoCover, members: campoMembers, albums: campoAlbums };
             updateBand(parseInt(campoId), banda);
 
@@ -302,6 +389,11 @@
 
             // Fecha o modal para visualização da mensagem
             //closeModal();
+        });
+
+        $("#picField").change(function () {
+            imagemA = true;
+            carregaImgA(this);
         });
 
         $("#btnDelete").click(function () {
@@ -335,9 +427,9 @@
 
         // Preenche o formulário quando o usuario clicar em uma linha da tabela 
         $("#grid-bandas").on("click", "tr", function (e) {
-            if(gridalterar){
+            if (gridalterar) {
                 gridalterar = false;
-                return ;
+                return;
             }
             let linhaBanda = this;
 
@@ -350,8 +442,10 @@
             $("#inputAlbum").val(linhaBanda.childNodes[4].firstChild.nodeValue);
         });
         var img64 = null;
+        var imagemA = false;
         function carregaImg() {
             let files = document.getElementById('picField').files;
+            
             console.log("Teste");
             if (FileReader && files && files.length) {
                 var fr = new FileReader();
@@ -360,12 +454,29 @@
                     imgElement.src = fr.result;
                     imgElement.style.width = '200px';
                     console.log(fr.result);
-                    // document.getElementById('imgPage').innerHTML = fr.result;
                     $("#inputCover").attr('src', fr.result);
+                    // document.getElementById('imgPage').innerHTML = fr.result;
+                    /* let imgElementA = document.getElementById('inputCovera');
+                     imgElementA.src = fr.result;
+                     imgElementA.style.width = '200px';
+                     $("#inputCovera").attr('src', fr.result);
+                     */
                     img64 = fr.result;
 
                 }
                 fr.readAsDataURL(files[0]);
+            }
+        }
+        function carreImgA(input) {
+            
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imgb64 = e.target.result;
+                    $('#inputCovera').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
         }
         exibeBandas();
