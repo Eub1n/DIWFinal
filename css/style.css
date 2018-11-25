@@ -1,0 +1,224 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+
+/*1.0*/
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #000000;
+    height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: rgb(19, 17, 17);
+    color: rgb(15, 12, 12);
+    padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+
+label {
+    font-weight: bolder;
+}
+
+::placeholder {
+    color: gray !important;
+    opacity: 3;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: gray !important;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: gray !important;
+    opacity: 3;
+}
+
+h1 {
+    text-align: center;
+}
+
+#msg {
+    height: 60px;
+}
+
+#btnInsert {
+    margin-left: 500px;
+}
+
+#grid-contatos tbody {
+    cursor: pointer;
+}
+
+#table-bandas img {
+    height: 100%;
+    width: auto;
+    max-height: 100px;
+}
+
+#titulo {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+#btnAltera {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#btnExclusao {
+    background-color: rgb(245, 4, 4);
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#btnVisualiza {
+    background-color: rgb(31, 9, 226);
+    border: none;
+    color: rgb(253, 247, 247);
+    padding: 8px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+
+.homeBtns button {
+    margin: 20px 2px;
+
+}
+
+/* The Modal (background) */
+.modal,
+.modal2 {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content,
+.modal2-content {
+    position: absolute;
+    top: -150px;
+    right: 100px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close,
+.close2 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#table-bandas .tab-space1 {
+    margin-right: 15.625em;
+}
+
+#table-bandas .tab-space2 {
+    margin-right: 8.875em;
+}
+
+#table-bandas .tab-space3 {
+    margin-right: 11.313em;
+}
+
+#table-bandas .tab-space4 {
+    margin-right: 13.188em;
+}
+
+#table-bandas .tab-space5 {
+    margin-right: 15em;
+}
+
+#table-bandas .tab-space6 {
+    margin-right: 11.563em;
+}
+
+#table-bandas img {
+    height: 100%;
+    width: auto;
+    max-height: 200px;
+    max-width: 153px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 60px;
+    overflow: hidden;
+}

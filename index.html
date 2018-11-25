@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD Bandas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body onload="init()">
+    <h1 id="titulo">BANDAS MUITO DOIDAS</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Modal -->
+            <div class="modal-container">
+                <div id="modaldelete" class="w3-modal">
+                    <div class="modal-content">
+                        <div class="modal-container">
+                            <h3>Deseja confirmar a exclusão?</h3>
+                            <button id="fecharmodal" onclick="document.getElementById('modaldelete').style.display='none'"
+                                class="w3-button w3-black">Cancelar</button>
+                            <button onclick="deleteBand(bandaIdGlobal); exibeBandas(); document.getElementById('modaldelete').style.display='none'; bandaIdGlobal=null"
+                                class="w3-button w3-black">Confirmar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--------------------------------Modal inset aqui ------------------------------------------->
+        <div class="modal-container">
+            <button id="btnInsert" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Inserir</button>
+
+            <div id="id01" class="w3-modal">
+                <div class="modal-content">
+                    <div class="modal-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <form id="form-banda">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="inputId">Id</label>
+                                    <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label for="inputNome">Nome(*)</label>
+                                    <input type="text" class="form-control" id="inputNome" required placeholder="Informe o nome da Banda">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <label for="inputFormation">Formation(*)</label>
+                                    <input type="number" class="form-control" id="inputFormation" required placeholder="Ano de formação">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputGenre">Genre(*)</label>
+                                    <input type="text" class="form-control" id="inputGenre" required placeholder="Gênero">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputMembers">Members(*)</label>
+                                    <input type="text" class="form-control" id="inputMembers" required placeholder="Membros">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputAlbum">Albums(*)</label>
+                                    <input type="text" class="form-control" id="inputAlbum" required placeholder="Albuns">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="inputCover">Capa(*)</label>
+                                    <img id="inputCover" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                                        alt="">
+                                    <input type="file" name="picField" id="picField" onchange="carregaImg ()">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <small>(*) Campos obrigatórios</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="button" class="btn btn-success" id="btnInsert" value="Inserir">
+                                    <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar Form">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------Fim Modal inset aqui ------------------------------------------->
+
+        <!------------------------------------------------------Modal alterar    ---------------------------------------------------->
+
+        <div class="modal-container">
+            <button id="btnAltera" onclick="document.getElementById('alterarmodal').style.display='block'" class="w3-button w3-black">Alterar</button>
+
+            <div id="alterarmodal" class="w3-modal">
+                <div class="modal-content">
+                    <div class="modal-container">
+                        <span onclick="document.getElementById('alterarmodal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <form id="form-banda">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="inputIda">Id</label>
+                                    <input type="text" class="form-control" id="inputIda" placeholder="ID" disabled>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label for="inputNomea">Nome(*)</label>
+                                    <input type="text" class="form-control" id="inputNomea" required placeholder="Informe o nome da Banda">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <label for="inputFormationa">Formation(*)</label>
+                                    <input type="number" class="form-control" id="inputFormationa" required placeholder="Ano de formação">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputGenrea">Genre(*)</label>
+                                    <input type="text" class="form-control" id="inputGenrea" required placeholder="Gênero">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputMembersa">Members(*)</label>
+                                    <input type="text" class="form-control" id="inputMembersa" required placeholder="Membros">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label for="inputAlbuma">Albums(*)</label>
+                                    <input type="text" class="form-control" id="inputAlbuma" required placeholder="Albuns">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="inputCovera">Capa(*)</label>
+                                    <img id="inputCover" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                                        alt="">
+                                    <input type="file" name="picField" id="picField" onchange="carregaImg ()">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <small>(*) Campos obrigatórios</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="button" class="btn btn-success" id="btnInsert" value="Alterar">
+                                    <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar Form">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------------------Fim  Modal alterar    ----------------------------------------------->
+
+
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <!--<input type="button" class="btn btn-danger" id="btnDelete" value="Excluir">-->
+            </div>
+        </div>
+
+
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-bandas" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Formação</th>
+                            <th scope="col">Gênero</th>
+                            <th scope="col">Capa</th>
+                            <th scope="col">Operações</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="table-bandas">
+                        <tr>
+                            <td scope="row">1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script-->
+    <script src="js/fakeDB.js"></script>
+    <script>
+        function exibeBandas() {
+            // Remove todas as linhas do corpo da tabela
+            $("#table-bandas").html("");
+
+            // Popula a tabela com os registros do banco de dados
+            for (i = 0; i < fakedb.data.length; i++) {
+                let banda = fakedb.data[i];
+                $("#table-bandas").append(`<tr><td scope="row">${banda.id}</td><td>${banda.nome}</td><td>${banda.formation}</td><td>${banda.genre}</td><td><img src="${banda.cover}"></td><td><a id="btnVisualiza" href="#" onclick="openModal2(${banda.id})">Visualizar</a> | <a id="btnAltera" href="#" onclick="alterarbotao(${banda.id})">Alterar</a> | <a id="btnExclusao" onclick="btnconfirmar()" value="Excluir" href="#">Excluir</a></td></tr>`);
+            }
+        }
+        var gridalterar = false ;
+        function alterarbotao(id){
+            gridalterar=true;
+            let bandaA = fakedb.data[id-1];
+            //alterar
+            $("#inputIda").val(id);
+            $("#inputNomea").val(bandaA.nome);
+            $("#inputFormationa").val(bandaA.formation);
+            $("#inputGenrea").val(bandaA.genre);
+            $("#inputCovera").val(bandaA.cover);
+            $("#inputMembersa").val(bandaA.members);
+            $("#inputAlbuma").val(bandaA.albums);
+            document.getElementById('alterarmodal').style.display='block';
+        }
+
+        function init() {
+            // Adiciona funções para tratar os eventos 
+            $("#btnInsert").click(function () {
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form-banda')[0].checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoNome = $("#inputNome").val();
+                let campoFormation = $("#inputFormation").val();
+                let campoGenre = $('#inputGenre').val();
+                let campoCover = img64;
+                let campoMembers = $('#inputMembers').val();
+                let campoAlbums = $('#inputAlbum').val();
+                let banda = { nome: campoNome, formation: campoFormation, genre: campoGenre, cover: campoCover, members: campoMembers, albums: campoAlbums };
+
+                insertBand(banda);
+
+                // Reexibe os bandas
+                exibeBandas();
+
+                // Limpa o formulario
+                $("#form-banda")[0].reset();
+            });
+        }
+
+        $("#btnAltera").click(function () {
+            // Obtem os valores dos campos do formulário
+            let campoId = $("#inputId").val();
+            if (campoId == "") {
+                displayMessage("Selecione a banda q deseja alterar.");
+                return;
+            }
+            let campoNome = $("#inputNome").val();
+            let campoFormation = $("#inputFormation").val();
+            let campoGenre = $('#inputGenre').val();
+            let campoCover = img64;
+            let campoMembers = $('#inputMembers').val();
+            let campoAlbums = $('#inputAlbum').val();
+            let banda = { nome: campoNome, formation: campoFormation, genre: campoGenre, cover: campoCover, members: campoMembers, albums: campoAlbums };
+            updateBand(parseInt(campoId), banda);
+
+            // Reexibe as bandas
+            exibeBandas();
+
+            // Limpa o formulario
+            $("#form-banda")[0].reset();
+
+            // Fecha o modal para visualização da mensagem
+            //closeModal();
+        });
+
+        var bandaIdGlobal = null;
+        function btnconfirmar() {
+            // console.log("q isso aqui");
+            document.getElementById('modaldelete').style.display = 'block';
+        }
+
+
+        $("#btnDelete").click(function () {
+            let campoId = $("#inputId").val();
+            if (campoId == "") {
+                displayMessage("Selecione um contato a ser excluído.");
+                return;
+            }
+            deleteBand(parseInt(campoId));
+
+            // Reexibe os contatos
+            exibeBandas();
+
+            // Limpa o formulario
+            $("#form-banda")[0].reset();
+        });
+
+        // Intercepta o click do botão Listar Contatos
+        $("#btnClear").click(function () {
+            $("#form-banda")[0].reset();
+        });
+
+        // Oculta a mensagem de aviso após alguns segundos
+        $('#msg').bind("DOMSubtreeModified", function () {
+            window.setTimeout(function () {
+                // $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                //   $(this).remove();
+                // });
+            }, 5000);
+        });
+
+        // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+        $("#grid-bandas").on("click", "tr", function (e) {
+            if(gridalterar){
+                gridalterar=false;
+                return ;
+            }
+            let linhaBanda = this;
+
+            $("#inputId").val(linhaBanda.childNodes[0].firstChild.nodeValue);
+            $("#inputNome").val(linhaBanda.childNodes[1].firstChild.nodeValue);
+            $("#inputFormation ").val(linhaBanda.childNodes[2].firstChild.nodeValue);
+            $("#inputGenre").val(linhaBanda.childNodes[3].firstChild.nodeValue);
+            $("#inputCover").val(linhaBanda.childNodes[4].firstChild.nodeValue);
+            $("#inputMembers").val(linhaBanda.childNodes[4].firstChild.nodeValue);
+            $("#inputAlbum").val(linhaBanda.childNodes[4].firstChild.nodeValue);
+
+
+            console.log("qualquer");
+            bandaIdGlobal = linhaBanda.childNodes[0].firstChild.nodeValue;
+            console.log('deleteid'+bandaIdGlobal);
+        });
+        var img64 = null;
+        function carregaImg() {
+            let files = document.getElementById('picField').files;
+            console.log("Teste");
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    let imgElement = document.getElementById('inputCover');
+                    imgElement.src = fr.result;
+                    imgElement.style.width = '200px';
+                    console.log(fr.result);
+                    // document.getElementById('imgPage').innerHTML = fr.result;
+                    $("#inputCover").attr('src', fr.result);
+                    img64 = fr.result;
+
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        }
+        exibeBandas();
+    </script>
+</body>
+</body>
+
+</html>
