@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-            <!-- Modal -->
+            <!-- Modal>
             <div class="modal-container">
                 <div id="modaldelete" class="w3-modal">
                     <div class="modal-content">
@@ -31,13 +31,12 @@
                             <h3>Deseja confirmar a exclusão?</h3>
                             <button id="fecharmodal" onclick="document.getElementById('modaldelete').style.display='none'"
                                 class="w3-button w3-black">Cancelar</button>
-                            <button onclick="deleteBand(bandaIdGlobal); exibeBandas(); document.getElementById('modaldelete').style.display='none'; bandaIdGlobal=null"
-                                class="w3-button w3-black">Confirmar</button>
+                            <button onclick="botaodel1()" class="w3-button w3-black">Confirmar</button>
 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div-->
 
 
         </div>
@@ -224,21 +223,30 @@
             // Popula a tabela com os registros do banco de dados
             for (i = 0; i < fakedb.data.length; i++) {
                 let banda = fakedb.data[i];
-                $("#table-bandas").append(`<tr><td scope="row">${banda.id}</td><td>${banda.nome}</td><td>${banda.formation}</td><td>${banda.genre}</td><td><img src="${banda.cover}"></td><td><a id="btnVisualiza" href="#" onclick="openModal2(${banda.id})">Visualizar</a> | <a id="btnAltera" href="#" onclick="alterarbotao(${banda.id})">Alterar</a> | <a id="btnExclusao" onclick="btnconfirmar()" value="Excluir" href="#">Excluir</a></td></tr>`);
+
+                $("#table-bandas").append(`<tr><td scope="row">${banda.id}</td><td>${banda.nome}</td><td>${banda.formation}</td><td>${banda.genre}</td><td><img src="${banda.cover}"></td><td><a id="btnVisualiza" href="#" onclick="openModal2(${banda.id})">Visualizar</a> | <a id="btnAltera" href="#" onclick="alterarClick(${banda.id})">Alterar</a> | <a id="btnExclusao" onclick="botaodel1(${banda.id})" value="Excluir" href="#">Excluir</a></td></tr>`);
             }
         }
+        
+        function botaodel1(id){
+            deleteBand(parseInt(id));
+            exibeBandas();
+        }
+
         var gridalterar = false ;
-        function alterarbotao(id){
-            gridalterar=true;
-            let bandaA = fakedb.data[id-1];
+        function alterarClick(id){
+            let banda = fakedb.data[fakedb.data.map(obj => obj.id).indexOf(parseInt(id))];
+            gridalterar = true;
+            
             //alterar
-            $("#inputIda").val(id);
-            $("#inputNomea").val(bandaA.nome);
-            $("#inputFormationa").val(bandaA.formation);
-            $("#inputGenrea").val(bandaA.genre);
-            $("#inputCovera").val(bandaA.cover);
-            $("#inputMembersa").val(bandaA.members);
-            $("#inputAlbuma").val(bandaA.albums);
+            $("#inputIda").val(banda.id);
+            $("#inputNomea").val(banda.nome);
+            $("#inputFormationa").val(parseInt(banda.formation));
+            $("#inputGenrea").val(banda.genre);
+            $("#inputCovera").val(banda.cover);
+            $("#inputMembersa").val(banda.members);
+            $("#inputAlbuma").val(banda.albums);
+
             document.getElementById('alterarmodal').style.display='block';
         }
 
@@ -296,13 +304,6 @@
             //closeModal();
         });
 
-        var bandaIdGlobal = null;
-        function btnconfirmar() {
-            // console.log("q isso aqui");
-            document.getElementById('modaldelete').style.display = 'block';
-        }
-
-
         $("#btnDelete").click(function () {
             let campoId = $("#inputId").val();
             if (campoId == "") {
@@ -335,7 +336,7 @@
         // Preenche o formulário quando o usuario clicar em uma linha da tabela 
         $("#grid-bandas").on("click", "tr", function (e) {
             if(gridalterar){
-                gridalterar=false;
+                gridalterar = false;
                 return ;
             }
             let linhaBanda = this;
@@ -347,11 +348,6 @@
             $("#inputCover").val(linhaBanda.childNodes[4].firstChild.nodeValue);
             $("#inputMembers").val(linhaBanda.childNodes[4].firstChild.nodeValue);
             $("#inputAlbum").val(linhaBanda.childNodes[4].firstChild.nodeValue);
-
-
-            console.log("qualquer");
-            bandaIdGlobal = linhaBanda.childNodes[0].firstChild.nodeValue;
-            console.log('deleteid'+bandaIdGlobal);
         });
         var img64 = null;
         function carregaImg() {
